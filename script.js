@@ -4,17 +4,18 @@ const buttonEl= document.getElementById("button");
 buttonEl.addEventListener('click',generate)
 generate()
 
-async function generate() {
+function generate() {
 
     const config= {
         headers: {
-            'Accept': 'application/json'
+            Accept: 'application/json'
         }
     }
     
-    const response= await fetch('https://icanhazdadjoke.com/',config)
-
-    const data= await response.json();
-    jokeEl.innerHTML= data.joke;
+ fetch('https://icanhazdadjoke.com/',config)
+ .then((res)=> res.json())
+ .then((data)=> {
+     jokeEl.innerHTML= data.joke
+ })
 }
 
